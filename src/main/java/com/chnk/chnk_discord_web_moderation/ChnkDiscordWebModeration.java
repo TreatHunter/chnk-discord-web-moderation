@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ChnkDiscordWebModeration {
     public static void main(String[] args) {
-        System.out.println("Hello, Misha!");
         SpringApplication.run(ChnkDiscordWebModeration.class, args);
     }
 }

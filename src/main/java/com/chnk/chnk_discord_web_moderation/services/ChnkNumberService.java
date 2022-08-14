@@ -1,15 +1,16 @@
 package com.chnk.chnk_discord_web_moderation.services;
 
-import com.chnk.chnk_discord_web_moderation.entities.Number;
+import com.chnk.chnk_discord_web_moderation.entities.ChnkNumber;
 import com.chnk.chnk_discord_web_moderation.repositories.NumbersRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
-public class SumService {
+public class ChnkNumberService {
     private final NumbersRepository numbersRepository;
-    public SumService(NumbersRepository numbersRepository) {
+    public ChnkNumberService(NumbersRepository numbersRepository) {
         this.numbersRepository = numbersRepository;
     }
 
@@ -17,18 +18,16 @@ public class SumService {
         return a + b;
     }
 
-    public Number saveNumber(Integer a){
-        Number num = new Number();
-        num.setNumber(a);
-        num = numbersRepository.save(num);
-        return num;
+    public ChnkNumber saveNumber(ChnkNumber chnkNumber){
+        chnkNumber = numbersRepository.save(chnkNumber);
+        return chnkNumber;
     }
 
-    public Number getIdByValue(Integer value){
-        return numbersRepository.getAllByNumber(value);
+    public List<ChnkNumber> getByValue(Integer value){
+        return numbersRepository.getAllByValue(value);
     }
 
-    public Number getValueById(UUID id){
+    public ChnkNumber getById(UUID id){
         return numbersRepository.getById(id);
     }
 }

@@ -1,18 +1,16 @@
 package com.chnk.chnk_discord_web_moderation.entities;
 
-import org.springframework.context.annotation.Primary;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class Number {
+public class ChnkNumber {
     @Id
     @GeneratedValue
     private UUID primaryKey;
-    private Integer number;
+    private Integer value;
 
     public UUID getPrimaryKey() {
         return primaryKey;
@@ -22,11 +20,11 @@ public class Number {
         this.primaryKey = primaryKey;
     }
 
-    public Integer getNumber() {
-        return number;
+    public Integer getValue() {
+        return value;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setValue(Integer value) {
+        this.value = value;
     }
 }
