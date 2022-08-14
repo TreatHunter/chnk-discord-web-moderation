@@ -1,4 +1,4 @@
-package com.chnk.chnk_discord_web_moderation.controllers;
+package com.chnk.chnk_discord_web_moderation.rest;
 
 import com.chnk.chnk_discord_web_moderation.services.SumService;
 import org.springframework.http.ResponseEntity;
