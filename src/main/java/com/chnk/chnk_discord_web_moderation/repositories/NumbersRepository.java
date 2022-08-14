@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface NumbersRepository extends JpaRepository<Number, UUID> {
+    Number getAllByNumber(Integer value);
 }

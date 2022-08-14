@@ -4,6 +4,8 @@ import com.chnk.chnk_discord_web_moderation.entities.Number;
 import com.chnk.chnk_discord_web_moderation.repositories.NumbersRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class SumService {
     private final NumbersRepository numbersRepository;
@@ -20,5 +22,13 @@ public class SumService {
         num.setNumber(a);
         num = numbersRepository.save(num);
         return num;
+    }
+
+    public Number getIdByValue(Integer value){
+        return numbersRepository.getAllByNumber(value);
+    }
+
+    public Number getValueById(UUID id){
+        return numbersRepository.getById(id);
     }
 }
