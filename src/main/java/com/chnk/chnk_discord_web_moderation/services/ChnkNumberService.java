@@ -1,6 +1,7 @@
 package com.chnk.chnk_discord_web_moderation.services;
 
 import com.chnk.chnk_discord_web_moderation.entities.ChnkNumber;
+import com.chnk.chnk_discord_web_moderation.exceptions.NotFoundException;
 import com.chnk.chnk_discord_web_moderation.repositories.NumbersRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,6 @@ public class ChnkNumberService {
     }
 
     public ChnkNumber getById(UUID id){
-        return numbersRepository.getById(id);
+        return numbersRepository.findById(id).orElseThrow(() -> {throw new NotFoundException("Hello! NotFound Exception!!!");});
     }
 }
