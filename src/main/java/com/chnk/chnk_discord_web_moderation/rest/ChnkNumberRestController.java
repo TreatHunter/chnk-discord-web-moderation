@@ -41,4 +41,14 @@ public class ChnkNumberRestController {
     public ResponseEntity<List<ChnkNumberDto>> getNumberByValue(@PathVariable("value") Integer value){
         return ResponseEntity.ok(chnkNumberMapper.toNumberDto(chnkNumberService.getByValue(value)));
     }
+
+    @GetMapping("divide")
+    public ResponseEntity<String> divideNumbers(){
+        return ResponseEntity.ok("Divide numbers!" + chnkNumberService.divideNumbers(5.0, 0.0));
+    }
+
+    @GetMapping("open-file")
+    public ResponseEntity<String> openFile(){
+        return ResponseEntity.ok("Open file!" + chnkNumberService.openFile());
+    }
 }
