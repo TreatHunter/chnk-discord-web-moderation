@@ -22,10 +22,6 @@ public class ChnkNumberService {
         this.numbersRepository = numbersRepository;
     }
 
-    public Integer sumNumbers(Integer a, Integer b){
-        return a + b;
-    }
-
     public ChnkNumber saveNumber(ChnkNumber chnkNumber){
         chnkNumber = numbersRepository.save(chnkNumber);
         return chnkNumber;
@@ -34,23 +30,28 @@ public class ChnkNumberService {
     public List<ChnkNumber> getByValue(Integer value){
         List<ChnkNumber> numbers = numbersRepository.getAllByValue(value);
         if (numbers.size() > 1) throw new FoundSeveralIdenticalNumberException(numbers);
+        if (numbers.size() == 0) throw new NotFoundException(value);
         return numbers;
     }
 
     public ChnkNumber getById(UUID id){
-        return numbersRepository.findById(id).orElseThrow(() -> {throw new NotFoundException(id, "Hello! NotFound Exception!!!");});
+        return numbersRepository.findById(id).orElseThrow(() -> {throw new NotFoundException(id);});
     }
 
-    public Double divideNumbers(Double a, Double b){
+    public ChnkNumber divideNumbers(Integer a, Integer b){
         if (b == 0.0) throw new DivideByZeroException(a, b);
-        return a / b;
+        ChnkNumber chnkNumber = new ChnkNumber();
+        chnkNumber.setValue(a / b);
+        return chnkNumber;
     }
 
-    public String openFile() {
-        Path path = Paths.get("src/test/resources/fileTest.txt");
+    public ChnkNumber openFile(String myPath) {
+        ChnkNumber chnkNumber = new ChnkNumber();
+        Path path = Paths.get(myPath);
         try {
             String line = Files.readAllLines(path).get(0);
-            return line;
+            chnkNumber.setValue(line.length());
+            return chnkNumber;
         } catch (IOException e) {
             throw new FileNotFoundException(path.toString());
         }

@@ -1,10 +1,12 @@
 package com.chnk.chnk_discord_web_moderation.rest.dto;
 
+import org.springframework.http.HttpStatus;
+
 import java.util.List;
 
 public class ExceptionDto {
     private String timestamp;
-    private Integer status;
+    private HttpStatus status;
     private List<String> errors;
     private String path;
 
@@ -16,11 +18,11 @@ public class ExceptionDto {
         this.timestamp = timestamp;
     }
 
-    public Integer getStatus() {
+    public HttpStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(HttpStatus status) {
         this.status = status;
     }
 

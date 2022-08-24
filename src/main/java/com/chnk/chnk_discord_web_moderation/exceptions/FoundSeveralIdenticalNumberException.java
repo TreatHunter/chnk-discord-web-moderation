@@ -1,12 +1,13 @@
 package com.chnk.chnk_discord_web_moderation.exceptions;
 
 import com.chnk.chnk_discord_web_moderation.entities.ChnkNumber;
+import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FoundSeveralIdenticalNumberException extends RuntimeException implements IException{
-    private List<String> numbers = new ArrayList<String>();
+    private List<String> numbers = new ArrayList<>();
 
     public FoundSeveralIdenticalNumberException(List<ChnkNumber> numbers){
         super();
@@ -17,8 +18,8 @@ public class FoundSeveralIdenticalNumberException extends RuntimeException imple
     }
 
     @Override
-    public Integer getStatus() {
-        return 501;
+    public HttpStatus getStatus() {
+        return HttpStatus.INTERNAL_SERVER_ERROR;
     }
 
     @Override

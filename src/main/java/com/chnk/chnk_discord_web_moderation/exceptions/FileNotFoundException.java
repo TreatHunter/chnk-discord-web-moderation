@@ -1,5 +1,7 @@
 package com.chnk.chnk_discord_web_moderation.exceptions;
 
+import org.springframework.http.HttpStatus;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -12,8 +14,8 @@ public class FileNotFoundException extends RuntimeException implements IExceptio
     }
 
     @Override
-    public Integer getStatus() {
-        return 404;
+    public HttpStatus getStatus() {
+        return HttpStatus.NOT_FOUND;
     }
 
     @Override
