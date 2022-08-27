@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/migrations/db.changelog-0.1.yaml
+  - changeSet:
+    id: 000001-add-chnk_number-table
+    author: Tsyreniao
+    changes:
+      - createTable:
+          columns:
+            - column:
+                name: primary_key
+                type: uuid
+            - column:
+                name: value
+                type: int
+          tableName: chnk_number
