@@ -1,9 +1,9 @@
 databaseChangeLog:
   - logicalFilePath: db/changelog/migrations/db.changelog-0.1.yaml
   - changeSet:
-    id: 000001-add-chnk_number-table
-    author: Tsyreniao
-    changes:
+      id: 000001-add-chnk_number-table
+      author: Tsyreniao
+      changes:
       - createTable:
           columns:
             - column:

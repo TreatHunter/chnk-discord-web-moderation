@@ -4,8 +4,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/mydb
     username: postgres
     password: 123
-  liquibase:
-    change-log: classpath:db/changelog/db.changelog-master.yaml
   jpa:
     show-sql: true
     hibernate:
