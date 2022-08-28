@@ -22,3 +22,23 @@ databaseChangeLog:
                   name: nums
                   type: bytea
             tableName: chnk_leet_code_num
+  - changeSet:
+      id: 000002-add-colunm-answer-to-chnk_leet_code_num-table
+      author: Tsyreniao
+      changes:
+        - addColumn:
+            tableName: chnk_leet_code_num
+            columns:
+              - column:
+                  name: answer
+                  type: bytea
+  - changeSet:
+      id: 000003-add-colunm-target-to-chnk_leet_code_num-table
+      author: Tsyreniao
+      changes:
+        - addColumn:
+            tableName: chnk_leet_code_num
+            columns:
+              - column:
+                  name: target
+                  type: int

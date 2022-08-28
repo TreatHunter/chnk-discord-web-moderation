@@ -8,12 +8,11 @@ public class LeetCodeService {
     public LeetCodeService(){
     }
 
-    public ChnkLeetCodeNum twoSum(int[] nums, int target) {
-        ChnkLeetCodeNum chnkLeetCodeNum = new ChnkLeetCodeNum();
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++){
-                if (nums[i] + nums[j] == target) {
-                    chnkLeetCodeNum.setNums(new int[] {i, j});
+    public ChnkLeetCodeNum twoSum(ChnkLeetCodeNum chnkLeetCodeNum) {
+        for (Integer i = 0; i < chnkLeetCodeNum.getNums().length; i++) {
+            for (Integer j = i + 1; j < chnkLeetCodeNum.getNums().length; j++){
+                if (chnkLeetCodeNum.getNums()[i] + chnkLeetCodeNum.getNums()[j] == chnkLeetCodeNum.getTarget()) {
+                    chnkLeetCodeNum.setAnswer(new Integer[] {i, j});
                     return chnkLeetCodeNum;
                 }
             }
