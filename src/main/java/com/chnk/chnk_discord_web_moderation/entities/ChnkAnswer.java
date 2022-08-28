@@ -1,5 +1,6 @@
 package com.chnk.chnk_discord_web_moderation.entities;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,13 +8,15 @@ import javax.persistence.ManyToOne;
 import java.util.UUID;
 
 @Entity
-public class ChnkNumber {
+public class ChnkAnswer {
     @Id
     @GeneratedValue
     private UUID primaryKey;
+
     private Integer value;
     @ManyToOne
     private ChnkLeetCodeNum chnkLeetCodeNum;
+
     public UUID getPrimaryKey() {
         return primaryKey;
     }

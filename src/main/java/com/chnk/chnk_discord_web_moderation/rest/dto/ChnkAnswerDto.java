@@ -2,7 +2,7 @@ package com.chnk.chnk_discord_web_moderation.rest.dto;
 
 import com.chnk.chnk_discord_web_moderation.entities.ChnkLeetCodeNum;
 
-public class ChnkNumberDto {
+public class ChnkAnswerDto {
     private Integer value;
 
     private ChnkLeetCodeNum chnkLeetCodeNum;
@@ -25,7 +25,7 @@ public class ChnkNumberDto {
 
     @Override
     public String toString() {
-        return "ChnkNumberDto{" +
+        return "ChnkAnswerDto{" +
                 "value=" + value +
                 ", chnkLeetCodeNum=" + chnkLeetCodeNum +
                 '}';

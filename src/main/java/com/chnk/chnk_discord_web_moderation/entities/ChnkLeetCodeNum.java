@@ -3,6 +3,9 @@ package com.chnk.chnk_discord_web_moderation.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -12,11 +15,13 @@ public class ChnkLeetCodeNum {
     @GeneratedValue
     private UUID primaryKey;
 
-    private Integer[] nums;
+    @OneToMany(mappedBy = "chnkLeetCodeNum")
+    private List<ChnkNumber> nums = new ArrayList<>();
 
-    private int target;
+    private Integer target;
 
-    private Integer[] answer;
+    @OneToMany(mappedBy = "chnkLeetCodeNum")
+    private List<ChnkAnswer> answer = new ArrayList<>();
 
     public UUID getPrimaryKey() {
         return primaryKey;
@@ -26,11 +31,11 @@ public class ChnkLeetCodeNum {
         this.primaryKey = primaryKey;
     }
 
-    public Integer[] getNums() {
+    public List<ChnkNumber> getNums() {
         return nums;
     }
 
-    public void setNums(Integer[] nums) {
+    public void setNums(List<ChnkNumber> nums) {
         this.nums = nums;
     }
 
@@ -38,15 +43,15 @@ public class ChnkLeetCodeNum {
         return target;
     }
 
-    public void setTarget(int target) {
+    public void setTarget(Integer target) {
         this.target = target;
     }
 
-    public Integer[] getAnswer() {
+    public List<ChnkAnswer> getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Integer[] answer) {
+    public void setAnswer(List<ChnkAnswer> answer) {
         this.answer = answer;
     }
 }
