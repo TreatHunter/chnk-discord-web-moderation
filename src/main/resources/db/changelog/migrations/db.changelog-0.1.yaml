@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/migrations/db.changelog-0.1.yaml
+  - changeSet:
+      id: 000001-add-chnk_number-table-and-chnk_leet_code_num
+      author: Tsyreniao
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: primary_key
+                  type: uuid
+              - column:
+                  name: value
+                  type: int
+            tableName: chnk_number
+        - createTable:
+            columns:
+              - column:
+                  name: primary_key
+                  type: uuid
+              - column:
+                  name: nums
+                  type: bytea
+            tableName: chnk_leet_code_num
