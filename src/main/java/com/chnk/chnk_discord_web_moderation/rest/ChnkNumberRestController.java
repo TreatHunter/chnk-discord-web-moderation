@@ -21,11 +21,6 @@ public class ChnkNumberRestController {
         this.chnkNumberMapper = chnkNumberMapper;
     }
 
-    @GetMapping
-    public ResponseEntity<String> helloWorld(){
-        return ResponseEntity.ok("Hello World!" + chnkNumberService.sumNumbers(5,5));
-    }
-
     @PostMapping("save-number")
     public ResponseEntity<ChnkNumberDto> setNumber(@RequestBody ChnkNumberDto chnkNumberDto){
         ChnkNumber chnkNumber = chnkNumberMapper.toNumber(chnkNumberDto);
@@ -40,5 +35,15 @@ public class ChnkNumberRestController {
     @GetMapping("get-number-by-value/{value}")
     public ResponseEntity<List<ChnkNumberDto>> getNumberByValue(@PathVariable("value") Integer value){
         return ResponseEntity.ok(chnkNumberMapper.toNumberDto(chnkNumberService.getByValue(value)));
+    }
+
+    @GetMapping("divide")
+    public ResponseEntity<ChnkNumberDto> divideNumbers(){
+        return ResponseEntity.ok(chnkNumberMapper.toNumberDto(chnkNumberService.divideNumbers(5, 0)));
+    }
+
+    @GetMapping("open-file")
+    public ResponseEntity<ChnkNumberDto> openFile(){
+        return ResponseEntity.ok(chnkNumberMapper.toNumberDto(chnkNumberService.openFile("src/test/resources/fileTest.txt")));
     }
 }
