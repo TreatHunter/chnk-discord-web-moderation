@@ -3,7 +3,6 @@ package com.chnk.chnk_discord_web_moderation.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import java.util.UUID;
 
 @Entity
@@ -12,8 +11,7 @@ public class ChnkNumber {
     @GeneratedValue
     private UUID primaryKey;
     private Integer value;
-    @ManyToOne
-    private ChnkLeetCodeNum chnkLeetCodeNum;
+
     public UUID getPrimaryKey() {
         return primaryKey;
     }
@@ -28,13 +26,5 @@ public class ChnkNumber {
 
     public void setValue(Integer value) {
         this.value = value;
-    }
-
-    public ChnkLeetCodeNum getChnkLeetCodeNum() {
-        return chnkLeetCodeNum;
-    }
-
-    public void setChnkLeetCodeNum(ChnkLeetCodeNum chnkLeetCodeNum) {
-        this.chnkLeetCodeNum = chnkLeetCodeNum;
     }
 }

@@ -12,9 +12,6 @@ databaseChangeLog:
               - column:
                   name: value
                   type: int
-              - column:
-                  name: chnk_leet_code_num
-                  type: uuid
             tableName: chnk_number
         - createTable:
             columns:
@@ -22,18 +19,26 @@ databaseChangeLog:
                   name: primary_key
                   type: uuid
               - column:
-                  name: value
-                  type: int
-              - column:
-                  name: chnk_leet_code_num
-                  type: uuid
-            tableName: chnk_answer
-        - createTable:
+                  name: nums
+                  type: bytea
+            tableName: chnk_leet_code_num
+  - changeSet:
+      id: 000002-add-colunm-answer-to-chnk_leet_code_num-table
+      author: Tsyreniao
+      changes:
+        - addColumn:
+            tableName: chnk_leet_code_num
             columns:
               - column:
-                  name: primary_key
-                  type: uuid
+                  name: answer
+                  type: bytea
+  - changeSet:
+      id: 000003-add-colunm-target-to-chnk_leet_code_num-table
+      author: Tsyreniao
+      changes:
+        - addColumn:
+            tableName: chnk_leet_code_num
+            columns:
               - column:
                   name: target
                   type: int
-            tableName: chnk_leet_code_num
