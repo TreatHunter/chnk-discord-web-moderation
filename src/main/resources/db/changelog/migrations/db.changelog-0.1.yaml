@@ -1,7 +1,7 @@
 databaseChangeLog:
   - logicalFilePath: db/changelog/migrations/db.changelog-0.1.yaml
   - changeSet:
-      id: 000001-add-chnk_number-table-and-chnk_leet_code_num
+      id: 000001-create-chnk_number-table
       author: Tsyreniao
       changes:
         - createTable:
@@ -9,36 +9,72 @@ databaseChangeLog:
               - column:
                   name: primary_key
                   type: uuid
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_chnk_number_primary_key
               - column:
                   name: value
                   type: int
             tableName: chnk_number
+  - changeSet:
+      id: 000002-create-chnk_leet_code_num-table
+      author: Tsyreniao
+      changes:
         - createTable:
             columns:
               - column:
                   name: primary_key
                   type: uuid
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_chnk_llet_code_num_primary_key
               - column:
-                  name: nums
-                  type: bytea
+                  name: target_primary_key
+                  type: uuid
+                  constraints:
+                    referencedTableName: chnk_number
+                    referencedColumnNames: primary_key
+                    foreignKeyName: fk_chnk_number_primary_key
             tableName: chnk_leet_code_num
   - changeSet:
-      id: 000002-add-colunm-answer-to-chnk_leet_code_num-table
+      id: 000003-create-chnk_leet_code_num_answer-table
       author: Tsyreniao
       changes:
-        - addColumn:
-            tableName: chnk_leet_code_num
+        - createTable:
             columns:
               - column:
-                  name: answer
-                  type: bytea
+                  name: chnk_leet_code_num_primary_key
+                  type: uuid
+                  constraints:
+                    referencedTableName: chnk_leet_code_num
+                    referencedColumnNames: primary_key
+                    foreignKeyName: chnk_leet_code_num_primary_key
+              - column:
+                  name: answer_primary_key
+                  type: uuid
+                  constraints:
+                    referencedTableName: chnk_number
+                    referencedColumnNames: primary_key
+                    foreignKeyName: fk_chnk_number_primary_key
+            tableName: chnk_leet_code_num_answer
   - changeSet:
-      id: 000003-add-colunm-target-to-chnk_leet_code_num-table
+      id: 000004-create-chnk_leet_code_num_nums-table
       author: Tsyreniao
       changes:
-        - addColumn:
-            tableName: chnk_leet_code_num
+        - createTable:
             columns:
               - column:
-                  name: target
-                  type: int
+                  name: chnk_leet_code_num_primary_key
+                  type: uuid
+                  constraints:
+                    referencedTableName: chnk_leet_code_num
+                    referencedColumnNames: primary_key
+                    foreignKeyName: chnk_leet_code_num_primary_key
+              - column:
+                  name: nums_primary_key
+                  type: uuid
+                  constraints:
+                    referencedTableName: chnk_number
+                    referencedColumnNames: primary_key
+                    foreignKeyName: fk_chnk_number_primary_key
+            tableName: chnk_leet_code_num_nums

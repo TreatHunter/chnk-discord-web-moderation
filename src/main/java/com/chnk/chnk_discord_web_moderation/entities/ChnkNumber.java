@@ -12,6 +12,15 @@ public class ChnkNumber {
     private UUID primaryKey;
     private Integer value;
 
+    public ChnkNumber(){
+
+    }
+
+    public ChnkNumber(ChnkNumber chnkNumber) {
+        this.primaryKey = chnkNumber.primaryKey;
+        this.value = chnkNumber.getValue();
+    }
+
     public UUID getPrimaryKey() {
         return primaryKey;
     }

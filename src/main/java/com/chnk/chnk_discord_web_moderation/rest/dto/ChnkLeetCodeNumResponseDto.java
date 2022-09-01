@@ -1,32 +1,15 @@
-package com.chnk.chnk_discord_web_moderation.entities;
+package com.chnk.chnk_discord_web_moderation.rest.dto;
 
-import javax.persistence.*;
+import com.chnk.chnk_discord_web_moderation.entities.ChnkNumber;
+
 import java.util.Set;
-import java.util.UUID;
 
-@Entity
-public class ChnkLeetCodeNum {
-
-    @Id
-    @GeneratedValue
-    private UUID primaryKey;
-
-    @ManyToMany
+public class ChnkLeetCodeNumResponseDto {
     private Set<ChnkNumber> nums;
 
-    @ManyToOne
     private ChnkNumber target;
 
-    @ManyToMany
     private Set<ChnkNumber> answer;
-
-    public UUID getPrimaryKey() {
-        return primaryKey;
-    }
-
-    public void setPrimaryKey(UUID primaryKey) {
-        this.primaryKey = primaryKey;
-    }
 
     public Set<ChnkNumber> getNums() {
         return nums;
@@ -50,5 +33,14 @@ public class ChnkLeetCodeNum {
 
     public void setAnswer(Set<ChnkNumber> answer) {
         this.answer = answer;
+    }
+
+    @Override
+    public String toString() {
+        return "ChnkLeetCodeNumResponseDto{" +
+                "nums=" + nums +
+                ", target=" + target +
+                ", answer=" + answer +
+                '}';
     }
 }

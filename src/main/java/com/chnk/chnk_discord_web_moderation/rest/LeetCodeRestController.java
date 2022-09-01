@@ -1,7 +1,8 @@
 package com.chnk.chnk_discord_web_moderation.rest;
 
 import com.chnk.chnk_discord_web_moderation.entities.ChnkLeetCodeNum;
-import com.chnk.chnk_discord_web_moderation.rest.dto.ChnkLeetCodeNumDto;
+import com.chnk.chnk_discord_web_moderation.rest.dto.ChnkLeetCodeNumRequestDto;
+import com.chnk.chnk_discord_web_moderation.rest.dto.ChnkLeetCodeNumResponseDto;
 import com.chnk.chnk_discord_web_moderation.rest.mapper.ChnkLeetCodeNumMapper;
 import com.chnk.chnk_discord_web_moderation.services.LeetCodeService;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class LeetCodeRestController {
     }
 
     @PostMapping("LeetCode_1")
-    public ResponseEntity<ChnkLeetCodeNumDto> leetCode1(@RequestBody ChnkLeetCodeNumDto chnkLeetCodeNumDto){
+    public ResponseEntity<ChnkLeetCodeNumResponseDto> leetCode1(@RequestBody ChnkLeetCodeNumRequestDto chnkLeetCodeNumDto){
         ChnkLeetCodeNum chnkLeetCodeNum = chnkLeetCodeNumMapper.toLeetCodeNum(chnkLeetCodeNumDto);
         return ResponseEntity.ok(chnkLeetCodeNumMapper.toLeetCodeNumDto(leetCodeService.twoSum(chnkLeetCodeNum)));
     }
