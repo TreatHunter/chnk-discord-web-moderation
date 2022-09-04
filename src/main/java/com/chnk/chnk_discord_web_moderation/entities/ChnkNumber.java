@@ -27,4 +27,12 @@ public class ChnkNumber {
     public void setValue(Integer value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "ChnkNumber{" +
+                "primaryKey=" + primaryKey +
+                ", value=" + value +
+                '}';
+    }
 }
