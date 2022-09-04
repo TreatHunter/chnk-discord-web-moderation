@@ -27,11 +27,11 @@ public class ChnkNumberService {
         return chnkNumber;
     }
 
-    public List<ChnkNumber> getByValue(Integer value){
+    public ChnkNumber getByValue(Integer value){
         List<ChnkNumber> numbers = chnkNumbersRepository.getAllByValue(value);
         if (numbers.size() > 1) throw new FoundSeveralIdenticalNumberException(numbers);
-        if (numbers.size() == 0) throw new NotFoundException(value);
-        return numbers;
+        else if (numbers.size() == 0) throw new NotFoundException(value);
+        else return numbers.get(0);
     }
 
     public ChnkNumber getById(UUID id){
