@@ -51,4 +51,14 @@ public class ChnkLeetCodeNum {
     public void setAnswer(Set<ChnkNumber> answer) {
         this.answer = answer;
     }
+
+    @Override
+    public String toString() {
+        return "ChnkLeetCodeNum{" +
+                "primaryKey=" + primaryKey +
+                ", nums=" + nums +
+                ", target=" + target +
+                ", answer=" + answer +
+                '}';
+    }
 }
