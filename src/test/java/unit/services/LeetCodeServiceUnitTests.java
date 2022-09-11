@@ -75,11 +75,13 @@ public class LeetCodeServiceUnitTests {
         Assertions.assertEquals(9, answer.getTarget().getValue());
         Assertions.assertEquals(2, answer.getAnswer().size());
 
-        if ((answer.getAnswer().get(0).getValue() == 2 && answer.getAnswer().get(1).getValue() == 7) ||
-                (answer.getAnswer().get(0).getValue() == 7 && answer.getAnswer().get(1).getValue() == 2)){
-            Assertions.assertTrue(true);
+        if (answer.getAnswer().get(0).getValue() == 2){
+            Assertions.assertEquals(2, answer.getAnswer().get(0).getValue());
+            Assertions.assertEquals(7, answer.getAnswer().get(1).getValue());
+        } else if (answer.getAnswer().get(0).getValue() == 7){
+            Assertions.assertEquals(7, answer.getAnswer().get(0).getValue());
+            Assertions.assertEquals(2, answer.getAnswer().get(1).getValue());
         }
-        else Assertions.assertTrue(false);
 
         Assertions.assertFalse(answer
                 .getAnswer()

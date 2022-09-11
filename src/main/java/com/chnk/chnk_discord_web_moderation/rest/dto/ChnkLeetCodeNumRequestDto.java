@@ -3,7 +3,6 @@ package com.chnk.chnk_discord_web_moderation.rest.dto;
 import com.chnk.chnk_discord_web_moderation.entities.ChnkNumber;
 
 import java.util.List;
-import java.util.Set;
 
 public class ChnkLeetCodeNumRequestDto {
     private List<ChnkNumber> nums;

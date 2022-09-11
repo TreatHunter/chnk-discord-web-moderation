@@ -2,7 +2,6 @@ package com.chnk.chnk_discord_web_moderation.entities;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
