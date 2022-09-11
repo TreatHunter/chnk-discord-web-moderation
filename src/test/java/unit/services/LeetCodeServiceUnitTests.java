@@ -15,6 +15,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -33,7 +34,7 @@ public class LeetCodeServiceUnitTests {
 
     @Test
     @DisplayName("Just test")
-    public void test(){
+    public void test() {
         ChnkLeetCodeNum chnkLeetCodeNum = new ChnkLeetCodeNum();
         List<ChnkNumber> chnkNumberList = new ArrayList<>();
 
@@ -43,13 +44,13 @@ public class LeetCodeServiceUnitTests {
         chnkLeetCodeNum.setTarget(chnkNumber);
 
         chnkNumber = new ChnkNumber();
-        chnkNumber.setValue(2);
-        given(chnkNumbersRepository.getFirstByValue(2)).willReturn(Optional.ofNullable(chnkNumber));
+        chnkNumber.setValue(7);
+        given(chnkNumbersRepository.getFirstByValue(7)).willReturn(Optional.ofNullable(chnkNumber));
         chnkNumberList.add(chnkNumber);
 
         chnkNumber = new ChnkNumber();
-        chnkNumber.setValue(7);
-        given(chnkNumbersRepository.getFirstByValue(7)).willReturn(Optional.ofNullable(chnkNumber));
+        chnkNumber.setValue(2);
+        given(chnkNumbersRepository.getFirstByValue(2)).willReturn(Optional.ofNullable(chnkNumber));
         chnkNumberList.add(chnkNumber);
 
         chnkNumber = new ChnkNumber();
@@ -65,9 +66,9 @@ public class LeetCodeServiceUnitTests {
         chnkLeetCodeNum.setNums(chnkNumberList);
 
         given(chnkLeetCodeNumRepository.save(any(ChnkLeetCodeNum.class))).will((InvocationOnMock invocation) -> {
-                ChnkLeetCodeNum number = (ChnkLeetCodeNum) invocation.getArgument(0);
-                number.setPrimaryKey(UUID.randomUUID());
-                return number;
+            ChnkLeetCodeNum number = invocation.getArgument(0);
+            number.setPrimaryKey(UUID.randomUUID());
+            return number;
         });
 
         ChnkLeetCodeNum answer = leetCodeService.twoSum(chnkLeetCodeNum);
@@ -75,23 +76,22 @@ public class LeetCodeServiceUnitTests {
         Assertions.assertEquals(9, answer.getTarget().getValue());
         Assertions.assertEquals(2, answer.getAnswer().size());
 
-        if (answer.getAnswer().get(0).getValue() == 2){
-            Assertions.assertEquals(2, answer.getAnswer().get(0).getValue());
-            Assertions.assertEquals(7, answer.getAnswer().get(1).getValue());
-        } else if (answer.getAnswer().get(0).getValue() == 7){
-            Assertions.assertEquals(7, answer.getAnswer().get(0).getValue());
-            Assertions.assertEquals(2, answer.getAnswer().get(1).getValue());
-        }
-
-        Assertions.assertFalse(answer
-                .getAnswer()
+        List<ChnkNumber> sortedAnswer = answer.getAnswer()
                 .stream()
-                .anyMatch(chnkNum -> chnkNum.getValue() != 7 && chnkNum.getValue() != 2));
+                .sorted(Comparator.comparing(ChnkNumber::getValue))
+                .collect(Collectors.toList());
 
-        Assertions.assertEquals(4, answer.getNums().size());
-        Assertions.assertFalse(answer
-                .getNums()
+        Assertions.assertEquals(2, sortedAnswer.get(0).getValue());
+        Assertions.assertEquals(7, sortedAnswer.get(1).getValue());
+
+        List<ChnkNumber> sortedNums = answer.getNums()
                 .stream()
-                .anyMatch(chnkNum -> chnkNum.getValue() != 7 && chnkNum.getValue() != 2 && chnkNum.getValue() != 44 && chnkNum.getValue() != 55));
+                .sorted(Comparator.comparing(ChnkNumber::getValue))
+                .collect(Collectors.toList());
+
+        Assertions.assertEquals(2, sortedNums.get(0).getValue());
+        Assertions.assertEquals(7, sortedNums.get(1).getValue());
+        Assertions.assertEquals(44, sortedNums.get(2).getValue());
+        Assertions.assertEquals(55, sortedNums.get(3).getValue());
     }
 }
