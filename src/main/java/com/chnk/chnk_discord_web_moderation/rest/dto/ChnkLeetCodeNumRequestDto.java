@@ -2,18 +2,19 @@ package com.chnk.chnk_discord_web_moderation.rest.dto;
 
 import com.chnk.chnk_discord_web_moderation.entities.ChnkNumber;
 
+import java.util.List;
 import java.util.Set;
 
 public class ChnkLeetCodeNumRequestDto {
-    private Set<ChnkNumber> nums;
+    private List<ChnkNumber> nums;
 
     private ChnkNumber target;
 
-    public Set<ChnkNumber> getNums() {
+    public List<ChnkNumber> getNums() {
         return nums;
     }
 
-    public void setNums(Set<ChnkNumber> nums) {
+    public void setNums(List<ChnkNumber> nums) {
         this.nums = nums;
     }
 

@@ -2,20 +2,21 @@ package com.chnk.chnk_discord_web_moderation.rest.dto;
 
 import com.chnk.chnk_discord_web_moderation.entities.ChnkNumber;
 
+import java.util.List;
 import java.util.Set;
 
 public class ChnkLeetCodeNumResponseDto {
-    private Set<ChnkNumber> nums;
+    private List<ChnkNumber> nums;
 
     private ChnkNumber target;
 
-    private Set<ChnkNumber> answer;
+    private List<ChnkNumber> answer;
 
-    public Set<ChnkNumber> getNums() {
+    public List<ChnkNumber> getNums() {
         return nums;
     }
 
-    public void setNums(Set<ChnkNumber> nums) {
+    public void setNums(List<ChnkNumber> nums) {
         this.nums = nums;
     }
 
@@ -27,11 +28,11 @@ public class ChnkLeetCodeNumResponseDto {
         this.target = target;
     }
 
-    public Set<ChnkNumber> getAnswer() {
+    public List<ChnkNumber> getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Set<ChnkNumber> answer) {
+    public void setAnswer(List<ChnkNumber> answer) {
         this.answer = answer;
     }
 

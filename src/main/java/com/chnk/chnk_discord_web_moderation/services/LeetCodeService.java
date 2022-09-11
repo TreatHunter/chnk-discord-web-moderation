@@ -6,7 +6,9 @@ import com.chnk.chnk_discord_web_moderation.repositories.ChnkLeetCodeNumReposito
 import com.chnk.chnk_discord_web_moderation.repositories.ChnkNumbersRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,19 +23,21 @@ public class LeetCodeService {
     }
 
     public ChnkLeetCodeNum twoSum(ChnkLeetCodeNum chnkLeetCodeNum) {
-        Set<ChnkNumber> answerSet = new HashSet<>();
-
-        for (ChnkNumber chnkNumber1 : chnkLeetCodeNum.getNums()) {
-            for (ChnkNumber chnkNumber2 : chnkLeetCodeNum.getNums()) {
-                if (chnkNumber1.getValue() + chnkNumber2.getValue() == chnkLeetCodeNum.getTarget().getValue()) {
-
-                    answerSet.add(chnkNumbersRepository.getFirstByValue(chnkNumber1.getValue())
+        List<ChnkNumber> answerList = new ArrayList<>();
+        int i = 0;
+        while (i < chnkLeetCodeNum.getNums().size()) {
+            int j = 0;
+            while (j + i < chnkLeetCodeNum.getNums().size()) {
+                if (chnkLeetCodeNum.getNums().get(i).getValue() + chnkLeetCodeNum.getNums().get(j).getValue() == chnkLeetCodeNum.getTarget().getValue()) {
+                    ChnkNumber num1 = chnkLeetCodeNum.getNums().get(i);
+                    ChnkNumber num2 = chnkLeetCodeNum.getNums().get(j);
+                    answerList.add(chnkNumbersRepository.getFirstByValue(num1.getValue())
                             .orElseGet(() ->
-                                    chnkNumbersRepository.save(chnkNumber1)));
-                    answerSet.add(chnkNumbersRepository.getFirstByValue(chnkNumber2.getValue())
+                                    chnkNumbersRepository.save(num1)));
+                    answerList.add(chnkNumbersRepository.getFirstByValue(num2.getValue())
                             .orElseGet(() ->
-                                    chnkNumbersRepository.save(chnkNumber2)));
-                    chnkLeetCodeNum.setAnswer(answerSet);
+                                    chnkNumbersRepository.save(num2)));
+                    chnkLeetCodeNum.setAnswer(answerList);
 
                     chnkLeetCodeNum.setNums(chnkLeetCodeNum
                             .getNums()
@@ -42,7 +46,7 @@ public class LeetCodeService {
                                     chnkNumbersRepository.getFirstByValue(chnkNumber.getValue()).orElseGet(() ->
                                             chnkNumbersRepository.save(chnkNumber)
                                     )
-                            ).collect(Collectors.toSet()));
+                            ).collect(Collectors.toList()));
 
                     chnkLeetCodeNum.setTarget(chnkNumbersRepository.getFirstByValue(chnkLeetCodeNum.getTarget().getValue())
                             .orElseGet(() ->
@@ -50,7 +54,9 @@ public class LeetCodeService {
 
                     return chnkLeetCodeNumRepository.save(chnkLeetCodeNum);
                 }
+                j++;
             }
+            i++;
         }
         return null;
     }

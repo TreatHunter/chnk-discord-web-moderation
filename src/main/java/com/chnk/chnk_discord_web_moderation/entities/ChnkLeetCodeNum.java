@@ -1,6 +1,7 @@
 package com.chnk.chnk_discord_web_moderation.entities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -12,13 +13,13 @@ public class ChnkLeetCodeNum {
     private UUID primaryKey;
 
     @ManyToMany
-    private Set<ChnkNumber> nums;
+    private List<ChnkNumber> nums;
 
     @ManyToOne
     private ChnkNumber target;
 
     @ManyToMany
-    private Set<ChnkNumber> answer;
+    private List<ChnkNumber> answer;
 
     public UUID getPrimaryKey() {
         return primaryKey;
@@ -28,11 +29,11 @@ public class ChnkLeetCodeNum {
         this.primaryKey = primaryKey;
     }
 
-    public Set<ChnkNumber> getNums() {
+    public List<ChnkNumber> getNums() {
         return nums;
     }
 
-    public void setNums(Set<ChnkNumber> nums) {
+    public void setNums(List<ChnkNumber> nums) {
         this.nums = nums;
     }
 
@@ -44,11 +45,11 @@ public class ChnkLeetCodeNum {
         this.target = target;
     }
 
-    public Set<ChnkNumber> getAnswer() {
+    public List<ChnkNumber> getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Set<ChnkNumber> answer) {
+    public void setAnswer(List<ChnkNumber> answer) {
         this.answer = answer;
     }
 }
