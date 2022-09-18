@@ -33,7 +33,7 @@ public class ChnkNumberRestController {
     }
 
     @GetMapping("get-number-by-value/{value}")
-    public ResponseEntity<List<ChnkNumberDto>> getNumberByValue(@PathVariable("value") Integer value){
+    public ResponseEntity<ChnkNumberDto> getNumberByValue(@PathVariable("value") Integer value){
         return ResponseEntity.ok(chnkNumberMapper.toNumberDto(chnkNumberService.getByValue(value)));
     }
 
